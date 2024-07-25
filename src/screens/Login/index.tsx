@@ -5,6 +5,8 @@ import { styles } from './styles';
 import { colors } from '../../styles/colors';
 import { ComponentButtonInterface } from '../../components';
 import { LoginTypes } from '../../navigation/login.navigation';
+import { useAuth } from '../../hook/auth';
+import { AxiosError } from 'axios';
 
 export interface IAuthenticate {
     email?: string;
@@ -15,18 +17,27 @@ export function Login({ navigation }: LoginTypes) {
     const [data, setData] = useState<IAuthenticate>();
     async function handleSignIn() {
         if (data?.email && data.password) {
-            console.log(data)
-        } else {
+           setLoading(true)
+           try{
+            await singIn(data)
+           }catch (error){
+            const err= error as AxiosError
+            const msg = err.response?.data as string
+            Alert.alert(msg)
+           }
+           setLoading(false)
+        }else{
             Alert.alert("Preencha todos os campos!!!");
         }
     }
+
     function handleRegister() {
         navigation.navigate("Register")
     }
     function handleChange(item: IAuthenticate) {
         setData({ ...data, ...item });
     }
-}
+
 return (
     <View style={styles.container}>
         <KeyboardAvoidingView>
@@ -51,8 +62,10 @@ return (
                     autoCapitalize="none"
                     onChangeText={(i) => handleChange({ password: i })} />
             </View>
-            <ComponentButtonInterface title='Login' type='primary' onPressI={handleSignIn} /><ComponentfluttonInterface title='Cadastre-se' type='secondary' onPressI={handleRegister} />
+            <ComponentButtonInterface title='Login' type='primary' onPressI={handleSignIn} />
+            <ComponentButtonInterface title='Cadastre-se' type='secondary' onPressI={handleRegister} />
         </KeyboardAvoidingView >
     </View>
     
 );
+}
