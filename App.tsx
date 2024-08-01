@@ -1,11 +1,15 @@
-import {StatusBar} from 'expo-status-bar';
-import {Navigation} from './src/navigation';
 
-export default function App(){
-  return(
-    <>
-    <Navigation/>
-    <StatusBar style="auto"/>
-    </>
-  );
+import { StatusBar } from 'expo-status-bar';
+import { Navigation } from './src/navigation';
+import { AuthProvider } from './src/context/auth';
+
+export default function App() {
+return(
+  <>
+  <AuthProvider>
+    <Navigation />
+  </AuthProvider>
+  <StatusBar style='auto' />
+  </>
+)
 }

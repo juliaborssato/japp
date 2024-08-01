@@ -3,14 +3,14 @@ import {
 } from '../services/data/User'
 import React, { createContext, useState, useCallback, ReactNode, useEffect, Dispatch, SetStateAction } from 'react'
 import { api } from '../services/api'
-import { apiuser } from '../services/data'
+import { apiUser } from '../services/data'
 import { isAfter, parseISO } from 'date-fns'
-import AsyncStorage from @react - native - async - storage / async - storage
+import AsyncStorage from '@react-native-async-storage/async-storage'
 
 export interface IAuthContextData {
     signIn(credentials: IUser): Promise<void>
     signOut(): Promise<void>
-    user?: Authenticated
+    user?: IAuthenticated
     loading: boolean
     setLoading: Dispatch<SetStateAction<boolean>>
 }
@@ -21,7 +21,7 @@ export interface IProvider {
 
 const AuthContext = createContext<IAuthContextData>({} as IAuthContextData)
 
-const AuthProvider ({ children }: IProvider) => {
+const AuthProvider = ({ children }: IProvider) => {
     const [auth, setAuth] = useState<IAuthenticated>({} as IAuthenticated)
     const [loading, setLoading] = useState(false)
 
@@ -37,10 +37,10 @@ const AuthProvider ({ children }: IProvider) => {
         await AsyncStorage.removeItem("user")
     }, [])
 
-    const signOut = useCallback(async() =>{
-    setAuth({} as IAuthenticated)
-    await removeLocalStorage()
-    delete api.defaults.headers.common.Authorization
+    const signOut = useCallback(async () => {
+        setAuth({} as IAuthenticated)
+        await removeLocalStorage()
+        delete api.defaults.headers.common.Authorization
     }, [])
 
     const loadUserStorageData = useCallback(async () => {
@@ -49,20 +49,20 @@ const AuthProvider ({ children }: IProvider) => {
         if (user) {
             const userParse = JSON.parse(user) as IAuthenticated
             if (isAfter(parseISO(userParse.token.expires_at), new Date())) {
-                api.defaults.headers.common.Authorization = `Bearer ${ userParse.token }`
+                api.defaults.headers.common.Authorization = `Bearer ${userParse.token}`
                 setAuth({ ...userParse })
                 return true
             } else {
                 await removeLocalStorage()
                 return false
             }
-            } else {
-                return false
-            }
-            }, [])
-        useEffect(() => {
-            loadUserStorageData()
-        }, [])
+        } else {
+            return false
+        }
+    }, [])
+    useEffect(() => {
+        loadUserStorageData()
+    }, [])
 
     return (
         <AuthContext.Provider
@@ -74,9 +74,9 @@ const AuthProvider ({ children }: IProvider) => {
                 setLoading
             }}
         >
-    {children}
-    </AuthContext.Provider>
+            {children}
+        </AuthContext.Provider>
     )
 }
 
-export {AuthProvider, AuthContext}
+export { AuthProvider, AuthContext }

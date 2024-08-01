@@ -1,11 +1,18 @@
 import * as React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { LoginNavigation } from './login.navigation';
-export function Navigation() {
+import { useAuth } from '../hook/auth';
+import { DrawerNavigation } from '../navigation/drawer.navigation'
+import { Loading } from '../components/Loading'
 
-return (
-<NavigationContainer>
-<LoginNavigation />
-</NavigationContainer>
-)
+export function Navigation() {
+    const {user, loading} = useAuth ()
+    if (loading){
+        return <Loading/>
+    }
+    return(
+        <NavigationContainer>
+            {user?.token ? <DrawerNavigation /> : <LoginNavigation />}
+        </NavigationContainer>
+    )
 }
