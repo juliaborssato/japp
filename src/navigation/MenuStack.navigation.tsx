@@ -1,6 +1,7 @@
 import React from 'react';
 import { StackNavigationProp, createStackNavigator } from '@react-navigation/stack';
 import { Slide1, Slide2 } from '../screens';
+import {MessageNavigation} from './message.navigation'
 
 type MenuStackParam = {
     Slide1: undefined

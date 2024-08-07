@@ -13,7 +13,7 @@ buttonSecondary:{
 backgroundColor: colors.secondary, 
 borderRadius: 5, 
 margin: 10,
-}
+},
 
 buttonThird:{
 backgroundColor: colors.third, 
@@ -23,7 +23,7 @@ margin: 10,
 
 text:{
 color: colors.white,
-fontweight: "bold",
+fontWeight: "bold",
 padding: 10,
 fontSize: 18,
 textAlign: "center"

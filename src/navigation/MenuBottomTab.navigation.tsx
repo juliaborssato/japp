@@ -1,6 +1,8 @@
 import { createBottomTabNavigator, BottomTabNavigationProp } from '@react-navigation/bottom-tabs';
 import { Slide1, Slide2} from '../screens';
 import { AntDesign } from '@expo/vector-icons';
+import { MessageNavigation } from './message.navigation';
+import { colors } from '../styles/colors';
 
 type MenuTabParam = {
     Slide1: undefined
@@ -21,6 +23,14 @@ export function MenuTabs() {
             tabBarIcon: () => (
                 <AntDesign name="home" size={24} color="black" />
             )
+        }}
+        />
+
+        <Tab.Screen name="Mensagem" component={MessageNavigation}
+         options={{
+            tabBarIcon: () => (
+                <AntDesign name="message1" size={24} color={colors.white}/>
+            ),
         }}
         />
 

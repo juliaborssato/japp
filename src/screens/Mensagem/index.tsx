@@ -1,9 +1,12 @@
-import { View, Text, FlatList } from "react-native";
+import { View, Text, FlatList, TouchableOpacity } from "react-native";
 import { styles } from "./styles";
 import { useEffect, useState } from "react";
 import { apiMessage } from "../../services/data";
 import { IResponseMessage } from "../../services/data/Message";
 import { useAuth } from "../../hook/auth";
+import AntDesign from '@expo/vector-icons/AntDesign';
+import {colors} from "../../styles/colors";
+import { MessageTypes } from "../../navigation/message.navigation";
 
 export function Mensagem() {
   const [message, setMessage] = useState<IResponseMessage[]>([])
@@ -25,6 +28,7 @@ export function Mensagem() {
   const renderItem = (({ item }: itemMessage) => {
     return (
       <View style={styles.item}>
+         <Text style={styles.itemText}>Nome: {item.user.name}</Text>
         <Text style={styles.itemText}>Título: {item.title}</Text>
         <Text style={styles.itemText}>Mensagem: {item.message}</Text>
       </View>
@@ -41,6 +45,10 @@ return (
         />
       )
     }
+    <TouchableOpacity style={styles.botao}
+      onPress={()=>navigation.navigate("CadMessage")}>
+        <AntDesign name="pluscircle" size={48} color={colors.secondary}/>
+ </TouchableOpacity>
   </View>
 )
 }
