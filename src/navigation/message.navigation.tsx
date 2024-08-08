@@ -1,9 +1,9 @@
-import { StackNavigationProp, createStackNavigator};
-import { Mensagem, CadMensagem } from '../screens'
+import { StackNavigationProp, createStackNavigator } from '@react-navigation/stack';
+import { Mensagem, CadMessage } from '../screens';
 
 type MessageStackParamList = {
     Message: undefined
-    CadMessage: undefined
+    CadM: undefined
 }
 type MessageScreenNavigationProp = StackNavigationProp<MessageStackParamList, 'Message'>
 export type MessageTypes = {
@@ -14,7 +14,7 @@ export function MessageNavigation() {
     return (
         <Stack.Navigator screenOptions={{ headerShown: false }}>
             <Stack.Screen name='Message' component={Mensagem} />
-            <Stack.Screen name='CadMessage' component={CadMensagem} />
+            <Stack.Screen name='CadM' component={CadMessage} />
         </Stack.Navigator>
     )
 }

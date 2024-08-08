@@ -1,7 +1,7 @@
 import {api} from '../../api'
 export interface IMessage {
     title?: string
-    message: string
+    message?: string
 }
 
 export interface IResponseMessage {
@@ -22,6 +22,7 @@ class MessageData {
         return api.get<IResponseMessage[]>('/message')
     }
     store(data:IMessage){
+        console.log(data)
         return api.post('/message', data)
     }
 }

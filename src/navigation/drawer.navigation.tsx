@@ -23,14 +23,14 @@ export function DrawerNavigation() {
             drawerInactiveTintColor: colors.white
         }}>
             <Drawer.Screen name='Tab' component={TabNavigation}
-            options={{
-                drawerLabel: 'Perfil',
-                headerTitle: 'Perfil',
-                drawerIcon: () => (
-                    <Ionicons name="person" size={24} color={colors.white}/>
-                ),
-            }}
-         />
+                options={{
+                    drawerLabel: 'Perfil',
+                    headerTitle: 'Perfil',
+                    drawerIcon: () => (
+                        <Ionicons name="person" size={24} color={colors.white} />
+                    ),
+                }}
+            />
         </Drawer.Navigator>
     )
 }

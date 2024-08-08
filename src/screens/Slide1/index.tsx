@@ -22,7 +22,7 @@ export function Slide1({navigation}:MenuStackTypes) {
          </View>
          <View style={styles.ball}>
             
-                <ButtonSlide setPageI={()=>navigation.push("Slide2")} page={2} />
+                <ButtonInterface onPressI={()=>navigation.push("Slide2")} page={2} />
             </View>
       </View>
 

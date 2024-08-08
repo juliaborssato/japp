@@ -14,7 +14,7 @@ export function Perfil() {
         <View>
             <View style={styles.sociais}>
             <FontAwesome5 name="facebook" size={24} color="black" />
-            <Text style={styles.sociaisText} > https://www.facebook.com/</Text>
+            <Text style={styles.sociaisText} >https://www.facebook.com/</Text>
             </View>
             <View style={styles.sociais}>
             <FontAwesome5 name="instagram" size={24} color="black" />

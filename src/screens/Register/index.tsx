@@ -16,6 +16,7 @@ password?: string
 }
 export function Register({navigation} : LoginTypes) {
     const [data, setData] = useState <IRegister>();
+    const { setLoading } = useAuth()
     async function handleRegister() {
         if (data?.email && data.name && data.password){
             setLoading(true)
@@ -75,8 +76,8 @@ export function Register({navigation} : LoginTypes) {
             onChangeText={(i) => handleChange ({password: i})}
             />
             </View>
-<ComponentButtonInterface title= 'Salvar' type='secondary' onPressI={handleRegister}/>
-<ComponentButtonInterface title='Voltar' type='primary' onPressI={handleGoBack}/>
+<ButtonInterface title= 'Salvar' type='secondary' onPressI={handleRegister}/>
+<ButtonInterface title='Voltar' type='primary' onPressI={handleGoBack}/>
 </KeyboardAvoidingView>
 </View>
 );
