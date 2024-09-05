@@ -9,6 +9,14 @@ import { AxiosError } from "axios";
 import { apiMessage } from "../../services/data";
 import { styles } from "./styles";
 
+export interface IError{
+    errors: {
+        rule: string
+        field: string 
+        message: string
+    }[]
+}
+
 export function CadMessage({ navigation }: MessageTypes) {
     const [data, setData] = useState<IMessage>()
     const { setLoading } = useAuth()
@@ -19,15 +27,14 @@ export function CadMessage({ navigation }: MessageTypes) {
         if (data?.title && data.message) {
             setLoading(true)
             try {
-                 
                 console.log(data)
                 await apiMessage.store(data)
                 Alert.alert("Mensagen cadastrada!!!")
                 navigation.navigate("Message")
             } catch (error) {
                 const err = error as AxiosError
-                const msg = err.response?.data as string
-                Alert.alert(msg)
+                const msg = (err.response?.data as IError)
+                Alert.alert(msg.errors.reduce((total, atual) => total + atual.message, ''))
             }
             setLoading(false)
         } else {
