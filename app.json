@@ -27,8 +27,8 @@
       ["expo-camera",
       {
         "cameraPermission": "Permite $(japp) accessar a sua câmera",
-        "microphonePermission": "Permita $(japp) acessar seu microfone",
-        "recordAudioAndroid": true
+        "savePhotosPermission":"Permita $(japp) salvar suas fotos.",
+        "isAccessMediaLocationEnabled": true
       }
     ],
     [
@@ -44,6 +44,12 @@
       {
         "photosPermission": "O aplicativo acessa suas fotos para que você possa compartilhá-las com seus amigos."
       }
+    ],
+    [
+      "expo-location", 
+      {
+      "locationAlwaysAndWhenInUsePermission": "Permita $(japp) acessar sua localização."
+    }
     ]
   ]
   }
