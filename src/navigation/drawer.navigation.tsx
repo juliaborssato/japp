@@ -6,6 +6,7 @@ import { Camera } from '../screens/Camera';
 import { Imagens } from '../screens/Imagens';
 import { LocationMap, QrCode } from '../screens';
 import React from 'react';
+import { LocationMapOrDest } from '../screens/LocationMapOrDest';
 
 type DrawerParamList = {
     Tab: undefined,
@@ -60,7 +61,7 @@ export function DrawerNavigation() {
                     ),
                 }}
                 />
-            <Drawer.Screen name='Localização' component={LocationMap}
+            <Drawer.Screen name='Localização' component={LocationMapOrDest}
                 options={{
                     drawerIcon: () => (
                         <FontAwesome5 name="map-marked-alt" size={24} color={colors.white} />

@@ -28,10 +28,10 @@ export const styles = StyleSheet.create({
         width: '90%',
         top:70
     },
-    seachInput:{
+    searchInput:{
         height: 56,
         borderRadius: 7,
-        borderwidth: 2,
+        borderWidth: 2,
         borderColor: colors.third
-    }
+    },
 });

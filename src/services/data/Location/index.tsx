@@ -1,5 +1,5 @@
 import {api} from '../../api'
-export interface ILocalization {
+export interface ILocation {
     latitude?: number
     longitude?: number
 }
@@ -8,7 +8,7 @@ export interface IResponseLocalization {
     id: number
     user_id: number
     latitude: number
-    lonitude: number
+    longitude: number
     created_at: string
     user:{
         id:number,
@@ -17,13 +17,13 @@ export interface IResponseLocalization {
     }
 }
 
-class LocalizationData {
+class LocationData {
     index() {
-        return api.get<IResponseLocalization[]>('/localization')
+        return api.get<IResponseLocalization[]>('/location')
     }
-    store(data:ILocalization){
+    store(data:ILocation){
         console.log(data)
-        return api.post('/localization', data)
+        return api.post('/location', data)
     }
 }
-export default new LocalizationData()
+export default new LocationData()
