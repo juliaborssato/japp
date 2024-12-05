@@ -5,6 +5,7 @@ import { TabNavigation } from './tab.navigation';
 import { Camera } from '../screens/Camera';
 import { Imagens } from '../screens/Imagens';
 import { LocationMap, QrCode } from '../screens';
+import { Acelerometro } from '../screens';
 import React from 'react';
 import { LocationMapOrDest } from '../screens/LocationMapOrDest';
 
@@ -14,6 +15,7 @@ type DrawerParamList = {
     Imagem: undefined
     QrCode: undefined
     Localização: undefined
+    Acelerometro: undefined
 }
 type DrawerScreenNavigationProp = DrawerNavigationProp<DrawerParamList, 'Tab'>
 export type DrawerTypes = {
@@ -61,10 +63,10 @@ export function DrawerNavigation() {
                     ),
                 }}
                 />
-            <Drawer.Screen name='Localização' component={LocationMapOrDest}
+            <Drawer.Screen name='Acelerometro' component={Acelerometro}
                 options={{
                     drawerIcon: () => (
-                        <FontAwesome5 name="map-marked-alt" size={24} color={colors.white} />
+                        <AntDesign name="car" size={24} color="black" />
                     ),
                 }}
             />
